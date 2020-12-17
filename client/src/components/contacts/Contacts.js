@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { motion } from "framer-motion";
 import ContactItem from "./ContactItem";
 import Spinner from "../layout/Spinner";
 import ContactContext from "../../context/contact/contactContext";
@@ -18,34 +18,34 @@ const Contacts = () => {
     return <h4>Please add a contact</h4>;
   }
 
-  return (
+  return contacts !== null && !loading ? (
     <Fragment>
-      {contacts !== null && !loading ? (
-        <TransitionGroup>
-          {filtered !== null
-            ? filtered.map((contact) => (
-                <CSSTransition
-                  key={contact._id}
-                  timeout={500}
-                  classNames='item'
-                >
-                  <ContactItem contact={contact} />
-                </CSSTransition>
-              ))
-            : contacts.map((contact) => (
-                <CSSTransition
-                  key={contact._id}
-                  timeout={500}
-                  classNames='item'
-                >
-                  <ContactItem contact={contact} />
-                </CSSTransition>
-              ))}
-        </TransitionGroup>
-      ) : (
-        <Spinner />
-      )}
+      {filtered !== null
+        ? filtered.map((contact) => (
+            <motion.div
+              key={contact._id}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <ContactItem contact={contact} />
+            </motion.div>
+          ))
+        : contacts.map((contact) => (
+            <motion.div
+              key={contact._id}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <ContactItem contact={contact} />
+            </motion.div>
+          ))}
     </Fragment>
+  ) : (
+    <Spinner />
   );
 };
 
