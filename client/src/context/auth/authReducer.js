@@ -11,6 +11,13 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload,
+      };
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
@@ -29,6 +36,8 @@ export default (state, action) => {
         user: null,
         error: action.payload,
       };
+    case AUTH_ERROR:
+      return {};
     case CLEAR_ERRORS:
       return {
         ...state,
