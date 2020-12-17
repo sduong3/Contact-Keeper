@@ -1,9 +1,9 @@
 # Contact Keeper
 
-A full stack MERN application where a user can register, login, and manage contacts.
-Front end: React
-Backend: MongoDB, Express, Node.js
-Deployed: Heroku
+A full stack MERN application where a user can register, login, and manage contacts.  
+Front end: React  
+Backend: MongoDB, Express, Node.js  
+Deployed: Heroku  
 https://blooming-lowlands-38791.herokuapp.com/login
 
 # Features
